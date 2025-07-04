@@ -1,6 +1,9 @@
 package com.sumit;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Adder {
     public int add(String numbers) {
@@ -18,12 +21,25 @@ public class Adder {
         }
 
         String[] nums = numbers.split(delimiter);
+        List<Integer> negatives = new ArrayList<>();
 
         int sum = 0;
         for(String num : nums)
         {
-            sum += Integer.parseInt(num);
+            if(num.isEmpty())
+                continue;
+            int val = Integer.parseInt(num);
+            if(val < 0)
+                negatives.add(val);
+            else
+                sum += val;
         }
+
+        if(!negatives.isEmpty())
+        {
+            throw new IllegalArgumentException("negative numbers not allowed " + negatives.stream().map(String::valueOf).collect(Collectors.joining(" ")));
+        }
+
         return sum;
     }
 }
