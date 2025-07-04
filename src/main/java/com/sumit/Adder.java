@@ -31,7 +31,7 @@ public class Adder {
             int val = Integer.parseInt(num);
             if(val < 0)
                 negatives.add(val);
-            else
+            else if(val <= 1000)
                 sum += val;
         }
 

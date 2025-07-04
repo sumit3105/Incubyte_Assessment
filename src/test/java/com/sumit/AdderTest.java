@@ -59,4 +59,13 @@ public class AdderTest {
         Exception exception2 = assertThrows(IllegalArgumentException.class, () -> obj.add("//*\n-3*4*5*-6"));
         assertEquals("negative numbers not allowed -3 -6", exception2.getMessage());
     }
+
+    // Test case - 7 : Numbers strictly greater than 1000 must be ignored
+    @Test
+    void ignoreNumberMoreThan1000()
+    {
+        Adder obj = new Adder();
+        assertEquals(3, obj.add("1,2,1001"));
+        assertEquals(7, obj.add("//#\n3#4#1002"));
+    }
 }
