@@ -37,4 +37,13 @@ public class AdderTest {
         assertEquals(6, obj.add("1\n2,3"));
         assertEquals(165, obj.add("31\n32,33\n34\n35"));
     }
+
+    // Test case = 5 : Support for custom delimiter
+    @Test
+    void supportForCustomDelimiter()
+    {
+        Adder obj = new Adder();
+        assertEquals(3, obj.add("//;\n1;2"));
+        assertEquals(18, obj.add("//*\n3*4*5*6"));
+    }
 }
