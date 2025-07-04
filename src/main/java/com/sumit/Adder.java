@@ -15,9 +15,18 @@ public class Adder {
         if(numbers.startsWith("//"))
         {
             int index = numbers.indexOf("\n");
-            String custom = numbers.substring(2, index);
+            String customDelimiter = numbers.substring(2, index);
             numbers = numbers.substring(index + 1);
-            delimiter = Pattern.quote(custom);
+
+            if(customDelimiter.startsWith("[") && customDelimiter.endsWith("]"))
+            {
+                String multiCharDel = customDelimiter.substring(1, customDelimiter.length() - 1);
+                delimiter = Pattern.quote(multiCharDel);
+            }
+            else
+            {
+                delimiter = Pattern.quote(customDelimiter);
+            }
         }
 
         String[] nums = numbers.split(delimiter);

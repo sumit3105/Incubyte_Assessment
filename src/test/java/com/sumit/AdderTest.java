@@ -68,4 +68,13 @@ public class AdderTest {
         assertEquals(3, obj.add("1,2,1001"));
         assertEquals(7, obj.add("//#\n3#4#1002"));
     }
+
+    // Test case - 8 : Test for Multicharacter of Single delimiter
+    @Test
+    void supportSingleMultiCharDelimiter()
+    {
+        Adder obj = new Adder();
+        assertEquals(6, obj.add("//[***]\n1***2***3"));
+        assertEquals(12, obj.add("//[---]\n3---4---5"));
+    }
 }
