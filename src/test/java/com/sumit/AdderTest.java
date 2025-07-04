@@ -23,8 +23,18 @@ public class AdderTest {
 
     // Test Case - 3 : Check sum for comma separated values
     @Test
-    void returnsSumIfTwoNumbersGiven() {
+    void returnsSumIfTwoNumbersGiven()
+    {
         Adder obj = new Adder();
         assertEquals(45, obj.add("14,31"));
+    }
+
+    // Test case - 4 : Support for New line as delimiter
+    @Test
+    void supportForNewLineAsDelimiter()
+    {
+        Adder obj = new Adder();
+        assertEquals(6, obj.add("1\n2,3"));
+        assertEquals(165, obj.add("31\n32,33\n34\n35"));
     }
 }

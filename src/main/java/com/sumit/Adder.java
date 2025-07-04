@@ -5,7 +5,7 @@ public class Adder {
         if(numbers.isEmpty())
             return 0;
 
-        String[] nums = numbers.split(",");
+        String[] nums = numbers.split("[,\n]");
 
         int sum = 0;
         for(String num : nums)
