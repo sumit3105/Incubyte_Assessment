@@ -70,6 +70,19 @@ public class Adder {
         }
     }
 
+    // Helper method to calculate sum of all numbers
+    private int calculateSum(String[] numbers)
+    {
+        int sum = 0;
+        for(String num : numbers)
+        {
+            int val = Integer.parseInt(num);
+            if(val <= 1000)
+                sum += val;
+        }
+        return sum;
+    }
+
     public int add(String numbers)
     {
         if(numbers.isEmpty())
@@ -82,14 +95,6 @@ public class Adder {
 
         this.validateTokens(nums);
 
-        int sum = 0;
-        for(String num : nums)
-        {
-            int val = Integer.parseInt(num);
-            if(val <= 1000)
-                sum += val;
-        }
-
-        return sum;
+        return this.calculateSum(nums);
     }
 }
