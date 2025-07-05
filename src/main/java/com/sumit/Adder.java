@@ -39,7 +39,39 @@ public class Adder {
         return numbers.startsWith("//") ? numbers.substring(numbers.indexOf("\n") + 1) : numbers;
     }
 
-    public int add(String numbers) {
+    // Helper method to validate input numbers
+    private void validateTokens(String[] numbers)
+    {
+        List<Integer> negatives = new ArrayList<>();
+        List<String> invalids = new ArrayList<>();
+
+        for (String token : numbers)
+        {
+            try
+            {
+                int val = Integer.parseInt(token);
+                if (val < 0)
+                    negatives.add(val);
+            }
+            catch (NumberFormatException e)
+            {
+                invalids.add(token);
+            }
+        }
+
+        if (!negatives.isEmpty())
+        {
+            throw new IllegalArgumentException("negative numbers not allowed " + negatives.stream().map(String::valueOf).collect(Collectors.joining(" ")));
+        }
+
+        if (!invalids.isEmpty())
+        {
+            throw new IllegalArgumentException("Invalid number found: " + String.join(" ", invalids));
+        }
+    }
+
+    public int add(String numbers)
+    {
         if(numbers.isEmpty())
             return 0;
 
@@ -47,34 +79,15 @@ public class Adder {
         numbers = this.extractNumbers(numbers);
 
         String[] nums = numbers.split(delimiter);
-        List<Integer> negatives = new ArrayList<>();
-        List<String> invalids = new ArrayList<>();
+
+        this.validateTokens(nums);
 
         int sum = 0;
         for(String num : nums)
         {
-            try
-            {
-                int val = Integer.parseInt(num);
-                if(val < 0)
-                    negatives.add(val);
-                else if(val <= 1000)
-                    sum += val;
-            }
-            catch (NumberFormatException e)
-            {
-                invalids.add(num);
-            }
-        }
-
-        if(!negatives.isEmpty())
-        {
-            throw new IllegalArgumentException("negative numbers not allowed " + negatives.stream().map(String::valueOf).collect(Collectors.joining(" ")));
-        }
-
-        if(!invalids.isEmpty())
-        {
-            throw new IllegalArgumentException("Invalid number found: " + String.join(" ", invalids));
+            int val = Integer.parseInt(num);
+            if(val <= 1000)
+                sum += val;
         }
 
         return sum;
