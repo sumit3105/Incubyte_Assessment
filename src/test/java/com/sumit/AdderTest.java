@@ -96,4 +96,13 @@ public class AdderTest {
         assertEquals(6, obj.add("//[**][%#]\n1%#2**3"));
         assertEquals(25, obj.add("//[#-#][$!!$][^+^][*/*]\n3*/*4$!!$5#-#6^+^7"));
     }
+
+    // Test case - 11 : Test for invalid numbers
+    @Test
+    void throwExceptionOnInvalidNumbers()
+    {
+        Adder obj = new Adder();
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> obj.add("1,a,b,3"));
+        assertEquals("Invalid number found: a b", ex.getMessage());
+    }
 }
