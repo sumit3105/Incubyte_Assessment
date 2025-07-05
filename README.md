@@ -1,19 +1,6 @@
 
 # String Calculator – TDD Kata Solution
 
-## Table of Contents
-
-- [Problem Overview](#-problem-overview)
-- [What is TDD?](#-what-is-tdd)
-- [TDD Approach in This Project](#-tdd-approach-in-this-project)
-- [Technologies Used](#️-technologies-used)
-- [Project Structure](#-project-structure)
-- [Test Cases Covered](#-test-cases-covered)
-- [How to Run](#-how-to-run)
-- [Final Thoughts](#-final-thoughts)
-
----
-
 ## Problem Overview
 
 This kata is a simplified calculator that takes a string input and returns the sum of the numbers in it. It starts with basic functionality (summing two numbers) and evolves step-by-step into a robust calculator that supports:
