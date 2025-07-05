@@ -39,22 +39,33 @@ public class Adder {
 
         String[] nums = numbers.split(delimiter);
         List<Integer> negatives = new ArrayList<>();
+        List<String> invalids = new ArrayList<>();
 
         int sum = 0;
         for(String num : nums)
         {
-            if(num.isEmpty())
-                continue;
-            int val = Integer.parseInt(num);
-            if(val < 0)
-                negatives.add(val);
-            else if(val <= 1000)
-                sum += val;
+            try
+            {
+                int val = Integer.parseInt(num);
+                if(val < 0)
+                    negatives.add(val);
+                else if(val <= 1000)
+                    sum += val;
+            }
+            catch (NumberFormatException e)
+            {
+                invalids.add(num);
+            }
         }
 
         if(!negatives.isEmpty())
         {
             throw new IllegalArgumentException("negative numbers not allowed " + negatives.stream().map(String::valueOf).collect(Collectors.joining(" ")));
+        }
+
+        if(!invalids.isEmpty())
+        {
+            throw new IllegalArgumentException("Invalid number found: " + String.join(" ", invalids));
         }
 
         return sum;
