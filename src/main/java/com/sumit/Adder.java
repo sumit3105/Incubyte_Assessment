@@ -7,35 +7,44 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Adder {
+
+    // Helper method to extract delimiter from numbers string literal
+    private String extractDelimiter(String numbers)
+    {
+        if(!numbers.startsWith("//"))
+            return "[,\n]";
+
+        int index = numbers.indexOf("\n");
+        String delimiter = numbers.substring(2, index);
+
+        if(delimiter.contains("[") && delimiter.contains("]"))
+        {
+            Matcher matcher = Pattern.compile("\\[(.*?)]").matcher(delimiter);
+            List<String> delimiters = new ArrayList<>();
+
+            while(matcher.find())
+            {
+                delimiters.add(Pattern.quote(matcher.group(1)));
+            }
+
+            return String.join("|", delimiters);
+        }
+        else
+            return Pattern.quote(delimiter);
+    }
+
+    // Helper method to extract numbers as string from input string
+    private String extractNumbers(String numbers)
+    {
+        return numbers.startsWith("//") ? numbers.substring(numbers.indexOf("\n") + 1) : numbers;
+    }
+
     public int add(String numbers) {
         if(numbers.isEmpty())
             return 0;
 
-        String delimiter = "[,\n]";
-
-        if(numbers.startsWith("//"))
-        {
-            int index = numbers.indexOf("\n");
-            String customDelimiter = numbers.substring(2, index);
-            numbers = numbers.substring(index + 1);
-
-            if(customDelimiter.contains("[") && customDelimiter.contains("]"))
-            {
-                Matcher matcher = Pattern.compile("\\[(.*?)]").matcher(customDelimiter);
-                List<String> delimiters = new ArrayList<>();
-
-                while(matcher.find())
-                {
-                    delimiters.add(Pattern.quote(matcher.group(1)));
-                }
-
-                delimiter = String.join("|", delimiters);
-            }
-            else
-            {
-                delimiter = Pattern.quote(customDelimiter);
-            }
-        }
+        String delimiter = this.extractDelimiter(numbers);
+        numbers = this.extractNumbers(numbers);
 
         String[] nums = numbers.split(delimiter);
         List<Integer> negatives = new ArrayList<>();
