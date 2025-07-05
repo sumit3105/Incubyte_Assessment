@@ -71,10 +71,19 @@ public class AdderTest {
 
     // Test case - 8 : Test for Multicharacter of Single delimiter
     @Test
-    void supportSingleMultiCharDelimiter()
+    void supportForSingleMultiCharDelimiter()
     {
         Adder obj = new Adder();
         assertEquals(6, obj.add("//[***]\n1***2***3"));
         assertEquals(12, obj.add("//[---]\n3---4---5"));
+    }
+
+    // Test case - 9 : Test for Multiple delimiter of single character
+    @Test
+    void supportForMultipleDelimiterOfSizeOne()
+    {
+        Adder obj = new Adder();
+        assertEquals(6, obj.add("//[*][%]\n1*2%3"));
+        assertEquals(25, obj.add("//[#][$][%][&]\n3$4#5&6%7"));
     }
 }
