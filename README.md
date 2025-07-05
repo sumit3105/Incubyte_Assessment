@@ -1,9 +1,9 @@
 
-# String Calculator – TDD Kata Solution
+# Incubyte Assessment - String Calculator
 
 ## Problem Overview
 
-This kata is a simplified calculator that takes a string input and returns the sum of the numbers in it. It starts with basic functionality (summing two numbers) and evolves step-by-step into a robust calculator that supports:
+This is a simplified calculator that takes a string input and returns the sum of the numbers in it. It starts with basic functionality (summing two numbers) and evolves step-by-step into a robust calculator that supports:
 
 - Custom delimiters
 - Multiple/multi-character delimiters
