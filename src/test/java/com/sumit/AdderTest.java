@@ -86,4 +86,14 @@ public class AdderTest {
         assertEquals(6, obj.add("//[*][%]\n1*2%3"));
         assertEquals(25, obj.add("//[#][$][%][&]\n3$4#5&6%7"));
     }
+
+
+    // Test case - 10 : Test for Multiple delimiter
+    @Test
+    void supportForMultipleDelimiter()
+    {
+        Adder obj = new Adder();
+        assertEquals(6, obj.add("//[**][%#]\n1%#2**3"));
+        assertEquals(25, obj.add("//[#-#][$!!$][^+^][*/*]\n3*/*4$!!$5#-#6^+^7"));
+    }
 }
