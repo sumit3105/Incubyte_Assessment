@@ -21,7 +21,7 @@ public class Adder {
 
             if(customDelimiter.contains("[") && customDelimiter.contains("]"))
             {
-                Matcher matcher = Pattern.compile("\\[(.)]").matcher(customDelimiter);
+                Matcher matcher = Pattern.compile("\\[(.*?)]").matcher(customDelimiter);
                 List<String> delimiters = new ArrayList<>();
 
                 while(matcher.find())
