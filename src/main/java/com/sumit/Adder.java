@@ -19,10 +19,17 @@ public class Adder {
             String customDelimiter = numbers.substring(2, index);
             numbers = numbers.substring(index + 1);
 
-            if(customDelimiter.startsWith("[") && customDelimiter.endsWith("]"))
+            if(customDelimiter.contains("[") && customDelimiter.contains("]"))
             {
-                String multiCharDel = customDelimiter.substring(1, customDelimiter.length() - 1);
-                delimiter = Pattern.quote(multiCharDel);
+                Matcher matcher = Pattern.compile("\\[(.)]").matcher(customDelimiter);
+                List<String> delimiters = new ArrayList<>();
+
+                while(matcher.find())
+                {
+                    delimiters.add(Pattern.quote(matcher.group(1)));
+                }
+
+                delimiter = String.join("|", delimiters);
             }
             else
             {
